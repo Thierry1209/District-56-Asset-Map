@@ -1,8 +1,0 @@
-#!/bin/sh
-mkdir -p /tmp/nginx/client-body-temp
-mkdir -p /tmp/nginx/proxy-temp
-mkdir -p /tmp/nginx/fastcgi-temp
-mkdir -p /tmp/nginx/uwsgi-temp
-mkdir -p /tmp/nginx/scgi-temp
-
-nginx -p . -c config/nginx.conf.erb
