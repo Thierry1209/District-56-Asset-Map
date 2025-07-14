@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYSA District 56 Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    /* Prevent anything from overflowing the screen */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 20px 0;
+      color: rgb(167, 73, 229);
+    }
+
+    #map {
+      width: 100vw;
+
+      height: 500px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Optional: override Leaflet control container to avoid overflow  ts completely useless*/
+    .leaflet-control-container {
+      max-width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>District 56 Map</h1>
+
+  <div style="margin-bottom: 10px;">
+    <label style="color:red"><input type="checkbox" id="toggle-red" checked> Show Proposal 1: Circular Economy</label>
+    <labe style="color:green"><input type="checkbox" id="toggle-green" checked> Show Proposal 2: Family Wellness</label>
+      <label style="color:black"><input type="checkbox" id="toggle-black" checked> Show Proposal 3: Community
+        Production</label>
+  </div>
+  <div id="map"></div>
+
+  <script>
+
+    const bounds = L.latLngBounds(            // restricting the map area so that we cant see the entire world lol
+      [40.6672982, -73.9575904], // SW corner 
+      [40.718205, -73.9102372]  // NE corner
+    );
+
+    const map = L.map('map', { // leaflet map use centered on the armory
+      center: [40.6851137, -73.9372676],
+      zoom: 15,
+      minZoom: 14,
+      maxZoom: 18,
+      maxBounds: bounds,
+      maxBoundsViscosity: 1.0
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: ''
+    }).addTo(map);
+
+    const redMarkers = L.layerGroup().addTo(map);
+    const greenMarkers = L.layerGroup().addTo(map);
+    const blackMarkers = L.layerGroup().addTo(map);
+
+
+
+
+    const district56Boundary = L.polygon([
+      [40.6994174195397, -73.95329349704441], // coordinates for the outline of the district
+      [40.70080760341983, -73.94195876662272],
+      [40.689002373687224, -73.9211471160114],
+      [40.68739242619566, -73.92093294419054],
+      [40.68709864036648, -73.92354033022376],
+      [40.67890045058961, -73.92174784077187],
+      [40.67459053283895, -73.92206080669716],
+      [40.675044592212444, -73.93057425819009],
+      [40.67325651011094, -73.93071904417852],
+      [40.67357249351894, -73.93624532281233],
+      [40.674483406842306, -73.93619627954382],
+      [40.67475749342599, -73.94169575906065],
+      [40.675640787798834, -73.94163070707876],
+      [40.67611918931266, -73.9498793514554],
+      [40.68039684644411, -73.9494816985515]
+
+    ], {
+      color: 'blue',         // border color
+      weight: 3,
+      fillColor: "pink",
+      fillOpacity: "0.2"           // border width     
+    }).addTo(map);
+
+    L.marker([40.6851137, -73.9372676])
+      .addTo(map)
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Marcus Garvey Armory</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.mg-armory56.org/" target= "_blank" style="color: #a749e5;">
+        Learn more about the initiative
+      </a>
+    </p>
+  </div>
+`) // this is how we embed links, images, or any html element into the <script> tag.
+      .openPopup();
+
+
+    L.circleMarker([40.686786, -73.9415907], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Fit4Work</h3>
+    <p style="margin:4px 0;">
+      <a href=" https://fit4workbk.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.686786, -73.9415907], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Fit4Work</h3>
+    <p style="margin:4px 0;">
+      <a href=" https://fit4workbk.com/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+
+
+    L.circleMarker([40.6742273, -73.9252335], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Weeksville Heritage Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.weeksvillesociety.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+
+    L.circleMarker([40.6799639, -73.9456091], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">CUMBE Center for African and Diasporic Dance</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.cumbedance.org/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.6997877, -73.9481769], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Brooklyn Fashion & Design Accelerator AND Brooklyn Foodworks</h3>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.6997877, -73.9481769], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Brooklyn Fashion & Design Accelerator AND Brooklyn Foodworks</h3>
+  </div>
+`).addTo(redMarkers)
+
+
+
+    L.circleMarker([40.6828208, -73.9262479], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Asase Yaa Cultural Arts Foundation</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.asaseyaaent.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6726551, -73.9595921], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Five Myles</h3>
+    <p style="margin:4px 0;">
+      <a href="https://fivemyles.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.68163082522334, -73.93179570177837], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Art Crawl</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.stoopsbedstuy.org/annual-art-crawl" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.681228, -73.9402134], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Zion Gallery</h3>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.6897667, -73.9365453], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Art Residency</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.bedstuyartresidency.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.699930015704645, -73.94803174396226], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">The Bishop Gallery</h3>
+    <p style="margin:4px 0;">
+      <a href="https://thebishopgallery.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.6799639, -73.9456091], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Restoration Plaza Innovation Campus</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.restorationplaza.org/community/innovation-campus/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.6799639, -73.9456091], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Restoration Plaza Innovation Campus</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.restorationplaza.org/community/innovation-campus/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.689429077189956, -73.94619479368676], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Celebrate Bed-Stuy</h3>
+    <p style="margin:4px 0;">
+      <a href=" https://brooklynnw.macaronikid.com/events/680aba5edaa67198f906da87/-celebrate-bed-stuy-at-herbert-von-king-cultural-arts-center
+" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6872704, -73.9301883], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> The Katmint and Aster Initiative</h3>
+    <p style="margin:4px 0;">
+      <a href=" https://thekatmint.com/" target= "_blank" style="color: #a749e5;">
+        Learn more about the Katmint
+      </a> </p>
+      <p style = "margin:4px 0;">
+      <a href="https://theasterinitiative.org/" target= "_blank" style="color: #a749e5;">
+        Learn more about the Aster
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6799803, -73.9465571], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Brooklyn Community Board 3</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.nyc.gov/site/brooklyncb3/index.page" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6755212, -73.9497448], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Another World</h3>
+    <p style="margin:4px 0;">
+      <a href="https://anotherworld.nyc/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+    L.circleMarker([40.6915784, -73.9512725], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Bed-Stuy Safe Street Workshops</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.bklynlibrary.org/calendar/bed-stuy-community-marcy-library-20250204-0100pm" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6840847, -73.931823], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`<div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Work Heights </h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.workheights.com/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+    </p>
+  </div>`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6900846, -73.956899], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`<div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Work Heights </h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.workheights.com/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+    </p>
+  </div>`).addTo(blackMarkers)
+
+
+
+
+    L.circleMarker([40.6761879, -73.9562019], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`<div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Work Heights </h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.workheights.com/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+    </p>
+  </div>`).addTo(blackMarkers)
+
+
+
+
+    L.circleMarker([40.6777896, -73.9558605], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`<div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Work Heights </h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.workheights.com/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+    </p>
+  </div>`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6817, -73.9534697], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`<div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;"> Live-it-Up Studios </h3>
+    <p style="margin:4px 0;">
+      <a href="https://liveitupstudio.nyc/" target= "_blank" style="color: #a749e5;">
+        Learn more 
+    </p>
+  </div>`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.6933138, -73.9314943], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Studio 26</h3>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6731579, -73.9504194], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">KP All Occasions Hall</h3>
+  </div>
+`).addTo(blackMarkers)
+
+
+    L.circleMarker([40.6885414, -73.9551289], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Open Concept Room</h3>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+    L.circleMarker([40.6716577, -73.9464461], {
+      radius: 5,            // size
+      fillColor: "black", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Historic Brooklyn Townhouse</h3>
+  </div>
+`).addTo(blackMarkers)
+
+
+
+
+    // community production section ends and circular economy starts
+
+
+
+    L.circleMarker([40.6854971, -73.9411351], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bedford Health Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/health-center-bedford.page" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+    L.circleMarker([40.6854971, -73.9411351], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bedford Health Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/health-center-bedford.page" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+
+    L.circleMarker([40.6687404, -73.9547443], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Major Owens Health and Wellness Community Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://majorowenscenter.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.6687404, -73.9547443], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Major Owens Health and Wellness Community Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://majorowenscenter.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+    L.circleMarker([40.6728839, -73.9517807], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Sterling Family Health and Wellness Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://sterling.bsfhc.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+    L.circleMarker([40.6728839, -73.9517807], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Sterling Family Health and Wellness Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://sterling.bsfhc.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+
+    L.circleMarker([40.6693146, -73.9502095], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Serenity and Soul Wellbeing Program</h3>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.6693146, -73.9502095], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Serenity and Soul Wellbeing Program</h3>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+
+
+    L.circleMarker([40.6822205, -73.925766], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Farm</h3>
+    <p style="margin:4px 0;">
+      <a href="https://brmuhc.org/community-food-center/bed-stuy-farm/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+    L.circleMarker([40.6832436, -73.935666], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Halsey Community Farm</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.462halsey.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+
+
+    L.circleMarker([40.675871, -73.9494118], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bergen St Community Garden</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.grownyc.org/openspace/gardens/bk/bergen" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.6786318, -73.9157975], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Campaign against Hunger</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.tcahnyc.org/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+
+    L.circleMarker([40.6885796, -73.9546425], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Clifton Place Park and Memorial Garden</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.nycgovparks.org/opportunities/volunteer/group/clifton-place-memorial-garden-park" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.6774261, -73.9536435], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Walt L. Shamel Community Garden</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.nycgovparks.org/opportunities/volunteer/group/walt-l-shamel-community-garden" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    L.circleMarker([40.6902764, -73.9396012], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Brooklyn Supported Agriculture</h3>
+    <p style="margin:4px 0;">
+      <a href="https://brooklynsupportedagriculture.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+
+    L.circleMarker([40.69028740631065, -73.94810871502368], {
+      radius: 5,            // size
+      fillColor: "red", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Food Share</h3>
+    <p style="margin:4px 0;">
+      <a href="https://communitysolidarity.org/foodshares/bedstuy" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(redMarkers)
+
+
+    // family wellness center starts
+
+    L.circleMarker([40.6806085, -73.9494862], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">The Family Center</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.thefamilycenter.org/?gad_source=1&gad_campaignid=81917576&gbraid=0AAAAAD-baDQZzj-moPtlekVNPyrcRaX8G&gclid=EAIaIQobChMI17uR4dW8jgMVwXVHAR3OFhyjEAAYASAAEgJ_mvD_BwE" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6853332, -73.9537487], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy YMCA</h3>
+    <p style="margin:4px 0;">
+      <a href="https://ymcanyc.org/locations/bedford-stuyvesant-ymca?gad_source=1&gad_campaignid=22303888289&gbraid=0AAAAADq2SPeEZSzdP3nZGd9f27KpeduKO&gclid=EAIaIQobChMIoPyflda8jgMVISjUAR13ZikiEAAYASAAEgInnfD_BwE" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6857003, -73.9474206], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Cititots Preschool and After-School care</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+
+    L.circleMarker([40.6857596, -73.9228712], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Early Childhood Development Center</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+
+
+    L.circleMarker([40.6880535, -73.9404194], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Bed-Stuy Early Childhood Development Center</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6844981, -73.9409925], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Glorious and Gifted Early Childhood Center</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+    L.circleMarker([40.6882957, -73.9373836], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Happy Hearts Day Care</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6976757, -73.9460706], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Tompkins Children's Center</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+
+    L.circleMarker([40.698215, -73.9406507], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Sumner Children's Center</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6785782, -73.9374993], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Interfaith Medical Center Behaviorial Health</h3>
+    <p style="margin:4px 0;">
+      <a href="https://onebrooklynhealth.org/services/psychiatry-behavioral-health" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+    L.circleMarker([40.6838329, -73.9537435], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Aviv Mental Health Counseling Services</h3>
+    <p style="margin:4px 0;">
+      <a href="https://avivamhs.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+
+    L.circleMarker([40.68944451302876, -73.94717049544805], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Herbert Von King Park</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6804333, -73.9227378], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Brevoort Playground</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.68019096472727, -73.92749706469293], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Jackie Robinson Park</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+    L.circleMarker([40.6855815, -73.9460977], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Hattie Carthan Park</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+
+
+    L.circleMarker([40.6820686, -73.9442997], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Potomac Playground</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+    L.circleMarker([40.6956024, -73.9506261], {
+      radius: 5,         // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Marcy Playground</h3>
+  </div>
+  `).addTo(greenMarkers)
+
+    L.circleMarker([40.6871476, -73.9387254], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Prominis Medical Services</h3>
+    <p style="margin:4px 0;">
+      <a href="https://prominis.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+    L.circleMarker([40.680029, -73.953137], {
+      radius: 5,            // size
+      fillColor: "green", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Citiblock Health</h3>
+    <p style="margin:4px 0;">
+      <a href="https://www.cityblock.com/" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(greenMarkers)
+
+
+
+    document.getElementById('toggle-red').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(redMarkers);
+      } else {
+        map.removeLayer(redMarkers);
+      }
+    }); // this is how we extract the state of the tickbox and then display the markers accordingly
+
+    document.getElementById('toggle-green').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(greenMarkers);
+      } else {
+        map.removeLayer(greenMarkers);
+      }
+    });
+
+    document.getElementById('toggle-black').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(blackMarkers);
+      } else {
+        map.removeLayer(blackMarkers);
+      }
+    });
+
+  </script>
+
+
+  <!-- <div style="text-align: left;">
+    <img src="static/circular_economy.jpeg" alt="circular_economy_board" width="475" style="display: inline-block;" />
+    <img src="static/family_wellness.jpeg" alt="family_wellness_board" width="475" style="display: inline-block;" />
+    <img src="static/community_production.jpeg" alt="family_wellness_board" width="475"
+      style="display: inline-block;" />
+  </div> -->
+
+
+
+
+</body>
+
+</html>
