@@ -6,4 +6,3 @@ mkdir -p /tmp/nginx/uwsgi-temp
 mkdir -p /tmp/nginx/scgi-temp
 
 nginx -p . -c config/nginx.conf.erb
-chmod +x bin/start-nginx
