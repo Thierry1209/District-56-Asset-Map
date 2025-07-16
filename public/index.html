@@ -56,6 +56,7 @@
     <p><label style="color:red;margin-left:2px; "><input type="checkbox" id="toggle-red" checked>  Show Proposal 1: Circular Economy</label></p>
     <p><label style="color:green; margin-right:8px;"><input type="checkbox" id="toggle-green" checked> Show Proposal 2: Family Wellness</label></p>
     <p> <label style="color:black; margin-left:38px"><input type="checkbox" id="toggle-black" checked> Show Proposal 3: Community Production</label></p>
+    <p> <label style="color: maroon; margin-right:152px"><input type="checkbox" id="toggle-school" checked> Show Schools</label></p>
   </div>
   <div id="map"></div>
 
@@ -82,6 +83,7 @@
     const redMarkers = L.layerGroup().addTo(map);
     const greenMarkers = L.layerGroup().addTo(map);
     const blackMarkers = L.layerGroup().addTo(map);
+    const schoolMarkers = L.layerGroup().addTo(map)
 
 
 
@@ -1299,6 +1301,17 @@
 `).addTo(greenMarkers)
 
 
+L.circleMarker([40.69931923458007,-73.94547494553031], {
+      radius: 5,            // size
+      fillColor: "maroon", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup("PS 373").addTo(schoolMarkers)
+
+
 
     document.getElementById('toggle-red').addEventListener('change', function () {
       if (this.checked) {
@@ -1321,6 +1334,14 @@
         map.addLayer(blackMarkers);
       } else {
         map.removeLayer(blackMarkers);
+      }
+    });
+
+    document.getElementById('toggle-school').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(schoolMarkers);
+      } else {
+        map.removeLayer(schoolMarkers);
       }
     });
 
