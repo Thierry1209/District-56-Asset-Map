@@ -52,14 +52,14 @@
 
   <h1>District 56 Map</h1>
 
-  <div style="margin-bottom: 10px;">
+  <!--<div style="margin-bottom: 10px;">
     <p><label style="color:red;margin-left:2px; "><input type="checkbox" id="toggle-red" checked>  Show Proposal 1: Circular Economy</label></p>
     <p><label style="color:green; margin-right:8px;"><input type="checkbox" id="toggle-green" checked> Show Proposal 2: Family Wellness</label></p>
     <p> <label style="color:black; margin-left:38px"><input type="checkbox" id="toggle-black" checked> Show Proposal 3: Community Production</label></p>
     <p> <label style="color: maroon; margin-right:152px"><input type="checkbox" id="toggle-school" checked> Show Schools</label></p>
     <p> <label style="color: magenta; margin-right:100px"><input type="checkbox" id="toggle-church" checked> Show Religious Sites</label></p>
-  </div>
-  <div id="map"></div>
+  </div> -->
+  <div id="map"></div> 
 
   <script>
 
@@ -86,6 +86,28 @@
     const blackMarkers = L.layerGroup().addTo(map);
     const schoolMarkers = L.layerGroup().addTo(map);
     const churchMarkers = L.layerGroup().addTo(map);
+
+    const legend = L.control({ position: 'topright' });  // or 'topleft', 'bottomleft', etc.
+
+legend.onAdd = function () {
+  const div = L.DomUtil.create('div', 'info legend');
+  div.innerHTML = `
+    <div style="background: white; padding: 10px; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.3); font-size: 13px;">
+      <label style="color:red;"><input type="checkbox" id="toggle-red" checked> Proposal 1</label><br>
+      <label style="color:green;"><input type="checkbox" id="toggle-green" checked> Proposal 2</label><br>
+      <label style="color:black;"><input type="checkbox" id="toggle-black" checked> Proposal 3</label><br>
+      <label style="color:maroon;"><input type="checkbox" id="toggle-school" checked> Schools</label><br>
+      <label style="color:magenta;"><input type="checkbox" id="toggle-church" checked> Religious Sites</label>
+    </div>
+  `;
+  
+  // Prevent map from zooming/panning when clicking inside the control
+  L.DomEvent.disableClickPropagation(div);
+
+  return div;
+};
+
+legend.addTo(map);
 
 
 
