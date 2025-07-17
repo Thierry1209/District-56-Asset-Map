@@ -57,6 +57,7 @@
     <p><label style="color:green; margin-right:8px;"><input type="checkbox" id="toggle-green" checked> Show Proposal 2: Family Wellness</label></p>
     <p> <label style="color:black; margin-left:38px"><input type="checkbox" id="toggle-black" checked> Show Proposal 3: Community Production</label></p>
     <p> <label style="color: maroon; margin-right:152px"><input type="checkbox" id="toggle-school" checked> Show Schools</label></p>
+    <p> <label style="color: magenta; margin-right:142px"><input type="checkbox" id="toggle-church" checked> Show Religious Sites</label></p>
   </div>
   <div id="map"></div>
 
@@ -83,7 +84,8 @@
     const redMarkers = L.layerGroup().addTo(map);
     const greenMarkers = L.layerGroup().addTo(map);
     const blackMarkers = L.layerGroup().addTo(map);
-    const schoolMarkers = L.layerGroup().addTo(map)
+    const schoolMarkers = L.layerGroup().addTo(map);
+    const churchMarkers = L.layerGroup().addTo(map);
 
 
 
@@ -1623,6 +1625,78 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
       .bindPopup("Hamilton Vocational High School").addTo(schoolMarkers)
 
 
+      L.circleMarker([40.69620838095841,-73.9468032907185], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("Greater Free Gift Church").addTo(churchMarkers)
+
+      L.circleMarker([40.69545837889562,-73.94709366021637], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("Greater St. Stephen United Church of God").addTo(churchMarkers)
+
+      L.circleMarker([40.69563224505201,-73.94561388846326], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("New Testament Church of God").addTo(churchMarkers)
+
+      L.circleMarker([40.693674462734414,-73.94617105419043], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("Iglesia Pentecostal el Redil").addTo(churchMarkers)
+
+      L.circleMarker([40.69383120912247,-73.94437226903457], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("Mt. Zion Pentecostal Holy Church").addTo(churchMarkers)
+
+
+      L.circleMarker([40.695015460366996,-73.9361825479954], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("Church of St. John the Baptist").addTo(churchMarkers)
+
+      L.circleMarker([40.69293574920626,-73.9460292023814], {
+      radius: 5,            // size
+      fillColor: "magenta", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity:0.8
+    })
+      .bindPopup("People's Church of Apostilic Faith").addTo(churchMarkers)
+
+
 
 
 
@@ -1655,6 +1729,14 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
         map.addLayer(schoolMarkers);
       } else {
         map.removeLayer(schoolMarkers);
+      }
+    });
+
+    document.getElementById('toggle-church').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(churchMarkers);
+      } else {
+        map.removeLayer(churchMarkers);
       }
     });
 
