@@ -93,11 +93,11 @@ legend.onAdd = function () {
   const div = L.DomUtil.create('div', 'info legend');
   div.innerHTML = `
     <div style="background: white; padding: 10px; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.3); font-size: 13px;">
-      <label style="color:red;"><input type="checkbox" id="toggle-red" checked> Proposal 1</label><br>
-      <label style="color:green;"><input type="checkbox" id="toggle-green" checked> Proposal 2</label><br>
-      <label style="color:black;"><input type="checkbox" id="toggle-black" checked> Proposal 3</label><br>
-      <label style="color:maroon;"><input type="checkbox" id="toggle-school" checked> Schools</label><br>
-      <label style="color:magenta;"><input type="checkbox" id="toggle-church" checked> Religious Sites</label>
+      <label style="color:red; display: flex; align-items: center;"><input type="checkbox" id="toggle-red" checked> Circular Economy </label><br>
+      <label style="color:green;display: flex; align-items: center;"><input type="checkbox" id="toggle-green" checked> Family Wellness </label><br>
+      <label style="color:black;display: flex; align-items: center;"><input type="checkbox" id="toggle-black" checked> Community Production</label><br>
+      <label style="color:maroon;display: flex; align-items: center;"><input type="checkbox" id="toggle-school" checked> Schools</label><br>
+      <label style="color:magenta;display: flex; align-items: center;"><input type="checkbox" id="toggle-church" checked> Religious Sites</label>
     </div>
   `;
   
