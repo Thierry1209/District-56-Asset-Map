@@ -58,6 +58,7 @@
     <p> <label style="color:black; margin-left:38px"><input type="checkbox" id="toggle-black" checked> Show Proposal 3: Community Production</label></p>
     <p> <label style="color: maroon; margin-right:152px"><input type="checkbox" id="toggle-school" checked> Show Schools</label></p>
     <p> <label style="color: magenta; margin-right:100px"><input type="checkbox" id="toggle-church" checked> Show Religious Sites</label></p>
+    <p> <label style = "color: turqouise; margin-left:38px"><input type = "checkbox" id="toggle-hosptial" checked> Show Health Centers</label></p>
   </div> -->
   <div id="map"></div> 
 
@@ -85,7 +86,7 @@
     const greenMarkers = L.layerGroup().addTo(map);
     const blackMarkers = L.layerGroup().addTo(map);
     const schoolMarkers = L.layerGroup().addTo(map);
-    const churchMarkers = L.layerGroup().addTo(map);
+    const changemakerMarkers = L.layerGroup().addTo(map);
 
     const legend = L.control({ position: 'topright' });  // or 'topleft', 'bottomleft', etc.
 
@@ -97,7 +98,8 @@ legend.onAdd = function () {
       <label style="color:green;display: flex; align-items: center;"><input type="checkbox" id="toggle-green" checked> Family Wellness </label>
       <label style="color:black;display: flex; align-items: center;"><input type="checkbox" id="toggle-black" checked> Community Production</label>
       <label style="color:maroon;display: flex; align-items: center;"><input type="checkbox" id="toggle-school" checked> Schools</label>
-      <label style="color:magenta;display: flex; align-items: center;"><input type="checkbox" id="toggle-church" checked> Religious Sites</label>
+      <label style="color:magenta;display: flex; align-items: center;"><input type="checkbox" id="toggle-changemakers" checked> Show Changemakers</label>
+      <label style ="color:teal; display:flex; align-items: center;"><input type ="checkbox" id="toggle-hosptial" checked> Show Health Centers</label>
     </div>
   `;
   
@@ -1658,210 +1660,6 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
       .bindPopup("St. Ambrose School").addTo(schoolMarkers)
 
 
-      L.circleMarker([40.69620838095841,-73.9468032907185], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Greater Free Gift Church").addTo(churchMarkers)
-
-      L.circleMarker([40.69545837889562,-73.94709366021637], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Greater St. Stephen United Church of God").addTo(churchMarkers)
-
-      L.circleMarker([40.69563224505201,-73.94561388846326], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("New Testament Church of God").addTo(churchMarkers)
-
-      L.circleMarker([40.693674462734414,-73.94617105419043], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Iglesia Pentecostal el Redil").addTo(churchMarkers)
-
-      L.circleMarker([40.69383120912247,-73.94437226903457], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Mt. Zion Pentecostal Holy Church").addTo(churchMarkers)
-
-
-      L.circleMarker([40.695015460366996,-73.9361825479954], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Church of St. John the Baptist").addTo(churchMarkers)
-
-      L.circleMarker([40.69293574920626,-73.9460292023814], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("People's Church of Apostilic Faith").addTo(churchMarkers)
-
-      L.circleMarker([40.69260017987199,-73.94185984088445], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Iglesia de Dios Pentecostal Roca de Horeb").addTo(churchMarkers)
-
-      L.circleMarker([40.69225402014758,-73.92866021650958], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-    
-    L.circleMarker([40.69335840902059,-73.94546430160564], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Zion Tabernacle").addTo(churchMarkers)
-
-    
-      L.circleMarker([40.690543525741724,-73.94220332790835], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Lovely Hill Baptist Church").addTo(churchMarkers)
-
-    
-      L.circleMarker([40.69029603376868,-73.93926200256155], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Upper Room Baptist Church").addTo(churchMarkers)
-
-    
-      L.circleMarker([40.690062626219714,-73.93495509603017], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Antioch Baptist Church").addTo(churchMarkers)
-    
-      L.circleMarker([40.68894534354007,-73.93527684419756], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Refuge Church of God").addTo(churchMarkers)
-
-      L.circleMarker([40.68892550761995,-73.9317638544975], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Mount Carmel Church of God").addTo(churchMarkers)
-
-
-      L.circleMarker([40.68883911949192,-73.93000589790486], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Mount Pigsah Church of God").addTo(churchMarkers)
-
-      L.circleMarker([40.69016625211394,-73.92472062981356], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Holy Trinity Baptist Church").addTo(churchMarkers)
-
-      L.circleMarker([40.68956854306119,-73.92346328959964], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Pilgrim Baptist Church").addTo(churchMarkers)
-
-      L.circleMarker([40.68750449132949,-73.93024887709959], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("Janes Methodist Episcopal Church").addTo(churchMarkers)
-
-      L.circleMarker([40.68642937706276,-73.93093658778209], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity:0.8
-    })
-      .bindPopup("St Leonards Church").addTo(churchMarkers)
-
 
 
 
@@ -1901,11 +1699,11 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
       }
     });
 
-    document.getElementById('toggle-church').addEventListener('change', function () {
+    document.getElementById('toggle-changemakers').addEventListener('change', function () {
       if (this.checked) {
-        map.addLayer(churchMarkers);
+        map.addLayer(changemakerMarkers);
       } else {
-        map.removeLayer(churchMarkers);
+        map.removeLayer(changemakerhMarkers);
       }
     });
 
