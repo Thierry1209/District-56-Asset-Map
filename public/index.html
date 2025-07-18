@@ -87,6 +87,7 @@
     const blackMarkers = L.layerGroup().addTo(map);
     const schoolMarkers = L.layerGroup().addTo(map);
     const changemakerMarkers = L.layerGroup().addTo(map);
+    const hospitalMarkers = L.layerGroup().addTo(map)
 
     const legend = L.control({ position: 'topright' });  // or 'topleft', 'bottomleft', etc.
 
@@ -99,7 +100,7 @@ legend.onAdd = function () {
       <label style="color:black;display: flex; align-items: center;"><input type="checkbox" id="toggle-black" checked> Community Production</label>
       <label style="color:maroon;display: flex; align-items: center;"><input type="checkbox" id="toggle-school" checked> Schools</label>
       <label style="color:magenta;display: flex; align-items: center;"><input type="checkbox" id="toggle-changemakers" checked> Show Changemakers</label>
-      <label style ="color:teal; display:flex; align-items: center;"><input type ="checkbox" id="toggle-hosptial" checked> Show Health Centers</label>
+      <label style ="color:teal; display:flex; align-items: center;"><input type ="checkbox" id="toggle-hospital" checked> Show Health Centers</label>
     </div>
   `;
   
@@ -1175,6 +1176,26 @@ legend.addTo(map);
 `).addTo(greenMarkers)
 
 
+L.circleMarker([40.6785782, -73.9374993], {
+      radius: 5,            // size
+      fillColor: "teal", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">Interfaith Medical Center Behaviorial Health</h3>
+    <p style="margin:4px 0;">
+      <a href="https://onebrooklynhealth.org/services/psychiatry-behavioral-health" target= "_blank" style="color: #a749e5;">
+        Learn more
+      </a>
+    </p>
+  </div>
+`).addTo(hospitalMarkers)
+
+
 
     L.circleMarker([40.6838329, -73.9537435], {
       radius: 5,            // size
@@ -1659,6 +1680,27 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
     })
       .bindPopup("St. Ambrose School").addTo(schoolMarkers)
 
+      L.circleMarker([40.69938564906874,-73.94264664413795], {
+      radius: 5,         // size
+      fillColor: "teal", // color
+      color: "none",        // border color
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
+      .bindPopup(`
+  <div style="font-family: sans-serif;"> 
+    <h3 style="margin:0; font-size:16px;">NYC Health + Hospitals/Woodhull</h3>
+  </div>
+  `).addTo(hospitalMarkers)
+
+
+
+
+
+
+
+
 
 
 
@@ -1703,9 +1745,18 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
       if (this.checked) {
         map.addLayer(changemakerMarkers);
       } else {
-        map.removeLayer(changemakerhMarkers);
+        map.removeLayer(changemakerMarkers);
       }
     });
+
+    document.getElementById('toggle-hospital').addEventListener('change', function () {
+      if (this.checked) {
+        map.addLayer(hospitalMarkers);
+      } else {
+        map.removeLayer(hospitalMarkers);
+      }
+    });
+
 
   </script>
 
