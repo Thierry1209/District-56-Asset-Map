@@ -35,10 +35,12 @@
 
     #map {
       width: 100vw;
-
+      border-color:blue;
+      border-width:2px;
       height: 500px;
       display: block;
       margin: 0 auto;
+      border-style:solid;
     }
 
     /* Optional: override Leaflet control container to avoid overflow  ts completely useless*/
@@ -75,7 +77,9 @@
       minZoom: 14,
       maxZoom: 18,
       maxBounds: bounds,
-      maxBoundsViscosity: 1.0
+      maxBoundsViscosity: 1.0,
+
+      
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
