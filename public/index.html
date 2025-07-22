@@ -91,6 +91,63 @@
     const changemakerMarkers = L.layerGroup().addTo(map);
     const hospitalMarkers = L.layerGroup().addTo(map)
 
+    const greenredIcon = L.divIcon({
+  className: '',
+  html: `
+    <div style="
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(to right, red 50%, green 50%);
+      border-radius: 50%;
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10], // center the icon on the point
+});
+
+const greentealIcon = L.divIcon({
+  className: '',
+  html: `
+    <div style="
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(to right, teal 50%, green 50%);
+      border-radius: 50%;
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10], // center the icon on the point
+});
+
+const redblackIcon = L.divIcon({
+  className: '',
+  html: `
+    <div style="
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(to right, red 50%, black 50%);
+      border-radius: 50%;
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10], // center the icon on the point
+});
+
+
+const pinkblackIcon = L.divIcon({
+  className: '',
+  html: `
+    <div style="
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(to right, magenta 50%, black 50%);
+      border-radius: 50%;
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10], // center the icon on the point
+});
+
     const legend = L.control({ position: 'topright' });  // or 'topleft', 'bottomleft', etc.
 
 legend.onAdd = function () {
@@ -156,13 +213,9 @@ legend.addTo(map);
       .openPopup();
 
 
-    L.circleMarker([40.686786, -73.9415907], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.686786, -73.9415907], {
+      icon:redblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -175,13 +228,8 @@ legend.addTo(map);
   </div>
 `).addTo(blackMarkers)
 
-    L.circleMarker([40.686786, -73.9415907], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.686786, -73.9415907], {
+      icon:redblackIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -197,13 +245,10 @@ legend.addTo(map);
 
 
 
-    L.circleMarker([40.6742273, -73.9252335], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6742273, -73.9252335], {
+
+      icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -219,13 +264,9 @@ legend.addTo(map);
 
 
 
-L.circleMarker([40.6742273, -73.9252335], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.6742273, -73.9252335], {
+  icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -241,7 +282,7 @@ L.circleMarker([40.6742273, -73.9252335], {
 
 
 
-    L.circleMarker([40.6799639, -73.9456091], {
+    L.circleMarker([40.67996, -73.945], {
       radius: 5,            // size
       fillColor: "black", // color
       color: "none",        // border color
@@ -261,13 +302,8 @@ L.circleMarker([40.6742273, -73.9252335], {
 `).addTo(blackMarkers)
 
 
-    L.circleMarker([40.6997877, -73.9481769], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6997877, -73.9481769], {
+    icon:redblackIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -275,13 +311,9 @@ L.circleMarker([40.6742273, -73.9252335], {
   </div>
 `).addTo(blackMarkers)
 
-    L.circleMarker([40.6997877, -73.9481769], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6997877, -73.9481769], {
+      icon:redblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -291,13 +323,9 @@ L.circleMarker([40.6742273, -73.9252335], {
 
 
 
-    L.circleMarker([40.6828208, -73.9262479], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6828208, -73.9262479], {
+      icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -311,13 +339,10 @@ L.circleMarker([40.6742273, -73.9252335], {
 `).addTo(blackMarkers)
 
 
-L.circleMarker([40.6828208, -73.9262479], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.6828208, -73.9262479], {
+
+  icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -352,13 +377,9 @@ L.circleMarker([40.6828208, -73.9262479], {
 `).addTo(blackMarkers)
 
 
-    L.circleMarker([40.68163082522334, -73.93179570177837], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.68163082522334, -73.93179570177837], {
+      icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -374,13 +395,8 @@ L.circleMarker([40.6828208, -73.9262479], {
 
 
 
-L.circleMarker([40.68163082522334, -73.93179570177837], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.68163082522334, -73.93179570177837], {
+      icon:pinkblackIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -426,13 +442,9 @@ L.circleMarker([40.68163082522334, -73.93179570177837], {
   </div>
 `).addTo(blackMarkers)
 
-    L.circleMarker([40.699930015704645, -73.94803174396226], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.699930015704645, -73.94803174396226], {
+      icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -447,13 +459,9 @@ L.circleMarker([40.68163082522334, -73.93179570177837], {
 
 
 
-L.circleMarker([40.699930015704645, -73.94803174396226], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.699930015704645, -73.94803174396226], {
+  icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -466,13 +474,10 @@ L.circleMarker([40.699930015704645, -73.94803174396226], {
   </div>
 `).addTo(changemakerMarkers)
 
-    L.circleMarker([40.6799639, -73.9456091], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6799639, -73.9456091], {
+
+      icon:redblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -488,7 +493,7 @@ L.circleMarker([40.699930015704645, -73.94803174396226], {
 
 
 
-L.circleMarker([40.6799639, -73.9456091], {
+L.circleMarker([40.6799648, -73.9459], {
       radius: 5,            // size
       fillColor: "magenta", // color
       color: "none",        // border color
@@ -509,13 +514,10 @@ L.circleMarker([40.6799639, -73.9456091], {
 
 
 
-    L.circleMarker([40.6799639, -73.9456091], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6799639, -73.9456091], {
+
+      icon:redblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -528,26 +530,6 @@ L.circleMarker([40.6799639, -73.9456091], {
   </div>
 `).addTo(redMarkers)
 
-
-    L.circleMarker([40.689429077189956, -73.94619479368676], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
-  <div style="font-family: sans-serif;"> 
-    <h3 style="margin:0; font-size:16px;"> Celebrate Bed-Stuy</h3>
-    <p style="margin:4px 0;">
-      <a href=" https://brooklynnw.macaronikid.com/events/680aba5edaa67198f906da87/-celebrate-bed-stuy-at-herbert-von-king-cultural-arts-center
-" target= "_blank" style="color: #a749e5;">
-        Learn more
-      </a>
-    </p>
-  </div>
-`).addTo(blackMarkers)
 
 
 
@@ -576,13 +558,10 @@ L.circleMarker([40.6799639, -73.9456091], {
 
 
 
-    L.circleMarker([40.6799803, -73.9465571], {
-      radius: 5,            // size
-      fillColor: "black", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6799803, -73.9465571], {
+
+      icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -595,13 +574,10 @@ L.circleMarker([40.6799639, -73.9456091], {
   </div>
 `).addTo(blackMarkers)
 
-L.circleMarker([40.6799803, -73.9465571], {
-      radius: 5,            // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.6799803, -73.9465571], {
+
+  icon:pinkblackIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -813,17 +789,9 @@ L.circleMarker([40.6799803, -73.9465571], {
 
     // community production section ends and circular economy starts
 
-
-
-    L.circleMarker([40.6854971, -73.9411351], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
+    L.marker([40.6854971, -73.9411351], {
+      icon: greenredIcon
+    }).bindPopup(`
   <div style="font-family: sans-serif;"> 
     <h3 style="margin:0; font-size:16px;">Bedford Health Center</h3>
     <p style="margin:4px 0;">
@@ -834,13 +802,9 @@ L.circleMarker([40.6799803, -73.9465571], {
   </div>
 `).addTo(redMarkers)
 
-    L.circleMarker([40.6854971, -73.9411351], {
-      radius: 5,            // size
-      fillColor: "green", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6854971, -73.9411351], {
+      icon: greenredIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -856,13 +820,9 @@ L.circleMarker([40.6799803, -73.9465571], {
 
 
 
-    L.circleMarker([40.6687404, -73.9547443], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6687404, -73.9547443], {
+      icon:greenredIcon
+
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -876,13 +836,8 @@ L.circleMarker([40.6799803, -73.9465571], {
 `).addTo(redMarkers)
 
 
-    L.circleMarker([40.6687404, -73.9547443], {
-      radius: 5,            // size
-      fillColor: "green", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6687404, -73.9547443], {
+      icon:greenredIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -897,13 +852,8 @@ L.circleMarker([40.6799803, -73.9465571], {
 
 
 
-    L.circleMarker([40.6728839, -73.9517807], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6728839, -73.9517807], {
+       icon: greenredIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -938,13 +888,8 @@ L.circleMarker([40.6799803, -73.9465571], {
 
 
 
-    L.circleMarker([40.6693146, -73.9502095], {
-      radius: 5,            // size
-      fillColor: "red", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6693146, -73.9502095], {
+      icon:greenredIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -953,13 +898,8 @@ L.circleMarker([40.6799803, -73.9465571], {
 `).addTo(redMarkers)
 
 
-    L.circleMarker([40.6693146, -73.9502095], {
-      radius: 5,            // size
-      fillColor: "green", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6693146, -73.9502095], {
+      icon:greenredIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -1284,13 +1224,8 @@ L.circleMarker([40.6799803, -73.9465571], {
   `).addTo(greenMarkers)
 
 
-    L.circleMarker([40.6785782, -73.9374993], {
-      radius: 5,            // size
-      fillColor: "green", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+    L.marker([40.6785782, -73.9374993], {
+      icon:greentealIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -1304,13 +1239,8 @@ L.circleMarker([40.6799803, -73.9465571], {
 `).addTo(greenMarkers)
 
 
-L.circleMarker([40.6785782, -73.9374993], {
-      radius: 5,            // size
-      fillColor: "teal", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
+L.marker([40.6785782, -73.9374993], {
+      icon:greentealIcon
     })
       .bindPopup(`
   <div style="font-family: sans-serif;"> 
@@ -1899,19 +1829,6 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
   </div>
   `).addTo(changemakerMarkers)
 
-  L.circleMarker([40.6799803,-73.9465571], {
-      radius: 5,         // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
-  <div style="font-family: sans-serif;"> 
-    <h3 style="margin:0; font-size:16px;"> Cultural Museum of African Art</h3>
-  </div>
-  `).addTo(changemakerMarkers)
 
 
   L.circleMarker([40.6799639,-73.9456091], {
@@ -1960,20 +1877,6 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
   </div>
   `).addTo(changemakerMarkers)
 
-  L.circleMarker([40.6687404,-73.9547443], {
-      radius: 5,         // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
-  <div style="font-family: sans-serif;"> 
-    <h3 style="margin:0; font-size:16px;"> Ifetayo </h3>
-  </div>
-  `).addTo(changemakerMarkers)
-
 
 
   L.circleMarker([40.6743965,-73.9440461], {
@@ -2004,35 +1907,7 @@ L.circleMarker([40.69931923458007,-73.94547494553031], {
   </div>
   `).addTo(changemakerMarkers)
 
-  L.circleMarker([40.6799803,-73.9465571], {
-      radius: 5,         // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
-  <div style="font-family: sans-serif;"> 
-    <h3 style="margin:0; font-size:16px;"> Internation African Arts Festival </h3>
-  </div>
-  `).addTo(changemakerMarkers)
 
-
-
-  L.circleMarker([40.6799803,-73.9465571], {
-      radius: 5,         // size
-      fillColor: "magenta", // color
-      color: "none",        // border color
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    })
-      .bindPopup(`
-  <div style="font-family: sans-serif;"> 
-    <h3 style="margin:0; font-size:16px;"> Kowteff </h3>
-  </div>
-  `).addTo(changemakerMarkers)
 
 
 
